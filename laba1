@@ -1,0 +1,31 @@
+#include <iostream> 
+#include <stdio.h>
+
+int main(void)
+
+{
+	float S;
+	float S1;
+	float S2;
+	float R;
+	float A;
+	double P;
+
+	P = 3.14;	
+
+	printf("R = ");
+	scanf_s("%f", &R);
+
+	printf("A = ");
+	scanf_s("%f", &A);
+
+
+	S1=P*(R*R);
+	S2=A*A;
+	S=S1-S2;
+
+	printf("figure area= %f\n", S);
+	system("pause");
+
+	return 0;
+}
