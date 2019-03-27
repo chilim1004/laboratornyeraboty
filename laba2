@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <iostream>
+int main(void)
+{
+	float s; // summa ryada
+	float a; // ocherednoy element ryada
+float c; // znamenatel ocherednogo elementa
+	float b; // chislitel ocherednogo elementa
+	float x; // vhodnoi parametr ryada
+	int n; // chislo elementov ryada
+	int sign; // знак очередного элемента ряда
+	int i; // nomer ocherednogo elementa ryada
+	// vvod parametrov ryada
+	printf("Vvedite chislo elementov ryada n= ");
+	scanf("%d", &n);
+	printf("Vvedite vhodnoi parametr ryada x= ");
+	scanf("%f", &x);
+if (n <= 0)// proverka uslovii 
+		printf("protivorechie ysloviu zadachi \n");
+	else
+
+// prisvaevanie peremennih
+	s = 0.0;
+	sign = 1.0;
+	i = 1.0;
+c = 1.0;
+	b = x;
+a = b / c;
+		// cikl
+		while (i <= n)
+			{
+			    	a = b / c;
+	   s = s + a * sign;
+		sign = -sign;
+		c = (i * 2.0) *(i * 2.0 + 1.0)*c;
+		b = b *x*x;
+		i = i + 1.0;
+			}
+		// vivod rezultata
+	printf("Summa ryada s = %6.4f\n", s);
+	
+	system("pause");
+	return 0;
+}
