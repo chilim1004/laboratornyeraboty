@@ -1,0 +1,55 @@
+#include <stdio.h> 
+#define YES 1 
+#define NO 0 
+int main(void) 
+{ 
+int c;//текущий символ из потока 
+int first_c;//первый символ в слове 
+int prev_c; //предыдущий символ 
+int flag;//признак слова 
+int cnt;//счетчик 
+int found_first;//признак того, что первая буква в слове – гласная 
+int found_last;//признак того, что последняя буква в слове – согласная 
+cnt = 0; 
+flag = NO; 
+found_first = NO; 
+found_last = NO; 
+first_c = ' '; 
+prev_c = ' '; 
+while ((c = getchar()) != EOF) 
+{ 
+if (prev_c == ' ' || prev_c == '.' || prev_c == '\n' || prev_c == ',') 
+{ 
+first_c = c; 
+} 
+if (c == ' ' || c == '.' || c == '\n' || c == ',') 
+{ 
+if (prev_c != 'a'&&prev_c != 'o'&&prev_c != 'u'&&prev_c != 'e'&&prev_c != 'i')
+{ 
+found_last = YES; 
+if (flag == YES) 
+{ 
+if (first_c == 'a' || first_c == 'o' || first_c == 'u' || first_c == 'e' || first_c == 'i') 
+{ 
+found_first = YES; 
+} 
+if ((found_first == YES) && (found_last == YES)) 
+{ 
+cnt = cnt + 1; 
+} 
+} 
+} 
+flag = NO; 
+found_last = NO; 
+found_first = NO; 
+first_c = ' '; 
+} 
+else 
+{ 
+flag = YES; 
+} 
+prev_c = c; 
+} 
+printf("kolichestvo slov = %d\n", cnt); 
+getchar(); 
+}
