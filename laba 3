@@ -1,13 +1,14 @@
 #include <stdio.h> 
 #define YES 1 
 #define NO 0 
+
 int main(void) 
 { 
 int c;//текущий символ из потока 
 int first_c;//первый символ в слове 
 int prev_c; //предыдущий символ 
 int flag;//признак слова 
-int nFlag;//признак цифры
+int nFlag;//признак цифры 
 int cnt;//счетчик 
 int found_first;//признак того, что первая буква в слове – гласная 
 int found_last;//признак того, что последняя буква в слове – согласная 
@@ -20,42 +21,39 @@ first_c = ' ';
 prev_c = ' '; 
 while ((c = getchar()) != EOF) 
 { 
-if (prev_c == ' ' || prev_c == '.' || prev_c == '\n' || prev_c == ',') 
+if (c == ' ' || c == '.' || c == '\n' || c == ',' ) 
 { 
-first_c = c; 
-} 
-if (c == ' ' || c == '.' || c == '\n' || c == ',') 
-{ 
-if (prev_c != 'a'&&prev_c != 'o'&&prev_c != 'u'&&prev_c != 'e'&&prev_c != 'i')
+if (prev_c != 'a' && prev_c != 'o' && prev_c != 'u' && prev_c != 'e' && prev_c != 'i' && prev_c != 'y' && nFlag != YES) 
 { 
 found_last = YES; 
 if (flag == YES) 
 { 
-if (first_c == 'a' || first_c == 'o' || first_c == 'u' || first_c == 'e' || first_c == 'i') 
+if (first_c == 'a' || first_c == 'o' || first_c == 'u' || first_c == 'e' || first_c == 'i' || first_c == 'y') 
 { 
 found_first = YES; 
 } 
-if ((found_first == YES) && (found_last == YES))
-{
-if (prev_c == first_c && (nFlag==NO) && (flag==YES)) 
+if ((found_first == YES) && (found_last == YES)) 
 { 
 cnt = cnt + 1; 
 } 
 } 
 } 
 flag = NO; 
-nFlag = NO;
+nFlag = NO; 
 found_last = NO; 
 found_first = NO; 
 first_c = ' '; 
 } 
-else if(c>='0'&&c<='9') 
+else if (c >= '0' && c <= '9') 
 { 
-nFlag=YES; 
-
+nFlag = YES; 
 } 
 else 
 { 
+if (prev_c == ' ' || prev_c == '.' || prev_c == '\n' || prev_c == ',') 
+{ 
+first_c = c; 
+} 
 flag = YES; 
 } 
 prev_c = c; 
