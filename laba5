@@ -1,0 +1,22 @@
+#define n 10
+ 
+int main(void) {
+	
+  int array[n];
+  int i;
+  
+  for( i = 0; i < n; i++ )
+ scanf("%d", &array[i]);
+  // Код для заполнения массива
+  int even_sum = 0; // Сумма четных
+  int uneven_sum = 0; // Сумма нечетных
+  for (i = 0; i < n; i++) {
+    if (array[i] % 2 == 1) {
+      uneven_sum += array[i];
+    } else {
+      even_sum += array[i];
+    }
+  }
+  printf("Sum of even numbers: %d, uneven numbers: %d\n", even_sum, uneven_sum);
+  return 0;
+}
