@@ -1,0 +1,94 @@
+#include <stdio.h> 
+#include <stdlib.h> 
+#define YES 1 
+#define NO 0 
+#define MAXLINE 1000 
+
+void lineProcess(char buffer[]); 
+
+int main() 
+{ 
+char line[MAXLINE]; 
+
+fgets(line, MAXLINE, stdin); 
+lineProcess(line); 
+fputs(line, stdout); 
+
+system("pause"); 
+return 0; 
+} 
+
+void lineProcess(char buffer[]) 
+{ 
+int i = -1; 
+int j = 0; 
+int flag = NO; //признак слова 
+int nFlag = NO; //признак цифры внутри слова 
+int delFlag = NO; //признак того, что слово надо удалить 
+int plvFlag = NO; //признак того, что предыдущая буква гласная 
+int wordStart = 0; //позиция начала слова 
+
+do { 
+i++; 
+
+if ((buffer[i] >= 'a' && buffer[i] <= 'z') || (buffer[i] >= 'A' && buffer[i] <= 'Z')) 
+{ 
+if (flag == NO) 
+{ 
+flag = YES; 
+wordStart = i; 
+} 
+if (buffer[i] == 'a' || buffer[i] == 'e' || buffer[i] == 'i' || buffer[i] == 'o' || buffer[i] == 'u' || buffer[i] == 'y' || 
+buffer[i] == 'A' || buffer[i] == 'E' || buffer[i] == 'I' || buffer[i] == 'O' || buffer[i] == 'U' || buffer[i] == 'Y') 
+{ 
+if (plvFlag == YES) 
+{ 
+delFlag = YES; 
+} 
+else 
+{ 
+plvFlag = YES; 
+} 
+} 
+else 
+{ 
+plvFlag = NO; 
+} 
+
+} 
+else if (buffer[i] >= '0' && buffer[i] <= '9') 
+{ 
+nFlag = YES; 
+} 
+else 
+{ 
+if (flag == YES && nFlag == NO) 
+{ 
+if (delFlag == YES) 
+{ 
+j = i - 1; 
+i = wordStart; 
+wordStart--; 
+
+do { 
+j++; 
+wordStart++; 
+buffer[wordStart] = buffer[j]; 
+} while (buffer[j] != '\0'); 
+
+while (wordStart < j) 
+{ 
+wordStart++; 
+buffer[wordStart] = '\0'; 
+} 
+} 
+} 
+
+delFlag = NO; 
+plvFlag = NO; 
+nFlag = NO; 
+flag = NO; 
+} 
+
+} while (buffer[i] != '\0'); 
+}
